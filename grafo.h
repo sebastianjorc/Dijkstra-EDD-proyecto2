@@ -21,32 +21,19 @@ typedef struct tipo_grafo{	int pesos [tam][tam];	Nodo nodos[tam];}Grafo;
 
 //---------------------------------------------------------------------------------------------------
 // PROTOTIPOS	
-void inicializar_matriz(int matriz[tam][tam]);
+//void inicializar_matriz(int matriz[tam][tam]);
 void inicializar_nodos(Grafo *G);
 void inicializar_grafo(Grafo *G);
 void imprimir_grafo(Grafo G);
 void drijkstra(Grafo G, int S, Nodo nodoActual);
 //---------------------------------------------------------------------------------------------------
-void inicializar_matriz(int matriz[tam][tam]){
-//				 a.b.c.d.e.f.g.h.i
-//				 0.1.2.3.4.5.6.7.8
-	matriz[tam][tam]={	{0,3,4,5,5,0,0,0,0},//0a
-		     		{3,0,4,0,0,0,0,0,0},//1b
- 		    		{4,4,0,0,1,0,0,0,0},//2c
-		 		{5,0,0,0,1,5,0,0,0},//3d
-				{0,0,1,3,0,1,0,0,0},//4e
-				{0,0,0,1,4,0,0,0,4},//5f
-				{0,0,0,0,0,0,0,4,8},//6g
-				{0,0,0,0,0,0,3,0,1},//7h
-				{0,0,0,0,0,5,1,2,0} //8i
-				};
-}
+//void inicializar_matriz(int matriz[tam][tam]){
 //---------------------------------------------------------------------------------------------------
 void inicializar_nodos(Grafo *G){
 
-	(*G).nodos[0]='a';	(*G).nodos[1]='b';	(*G).nodos[2]='c';	
-	(*G).nodos[3]='d';	(*G).nodos[4]='e';	(*G).nodos[5]='f';
-	(*G).nodos[6]='g';	(*G).nodos[7]='h';	(*G).nodos[8]='i';
+	(*G).nodos[0].letra='a';	(*G).nodos[1].letra='b';	(*G).nodos[2].letra='c';	
+	(*G).nodos[3].letra='d';	(*G).nodos[4].letra='e';	(*G).nodos[5].letra='f';
+	(*G).nodos[6].letra='g';	(*G).nodos[7].letra='h';	(*G).nodos[8].letra='i';
 
 	for (int i=0; i<tam; i++){
 		(*G).nodos[i].pos=i;
@@ -56,9 +43,18 @@ void inicializar_nodos(Grafo *G){
 }
 //---------------------------------------------------------------------------------------------------
 void inicializar_grafo(Grafo *G){
-
-	int matriz[tam][tam];
-	inicializar_matriz(matriz);
+//				 a.b.c.d.e.f.g.h.i
+//				 0.1.2.3.4.5.6.7.8
+	int matriz[tam][tam]={	{0,3,4,5,5,0,0,0,0},//0a
+		     		{3,0,4,0,0,0,0,0,0},//1b
+ 		    		{4,4,0,0,1,0,0,0,0},//2c
+		 		{5,0,0,0,1,5,0,0,0},//3d
+				{0,0,1,3,0,1,0,0,0},//4e
+				{0,0,0,1,4,0,0,0,4},//5f
+				{0,0,0,0,0,0,0,4,8},//6g
+				{0,0,0,0,0,0,3,0,1},//7h
+				{0,0,0,0,0,5,1,2,0} //8i
+				};
 	inicializar_nodos(G);
 
 	for (int i=0; i<tam; i++){
@@ -77,6 +73,7 @@ void imprimir_matriz(Grafo G){
 		for (int j=0; j<tam; j++){
 			printf("%i  ", (G.pesos[i][j]) );
 		}
+		printf("\n");
 	}
 }
 //---------------------------------------------------------------------------------------------------
@@ -86,6 +83,11 @@ void imprimir_nodos(Grafo G){
 		imprimir_nodo(G.nodos[i]);
 		printf("\n");
 	}
+}
+//---------------------------------------------------------------------------------------------------
+void imprimir_grafo(Grafo G){
+	imprimir_matriz(G);
+	imprimir_nodos(G);
 }
 //---------------------------------------------------------------------------------------------------
 void drijkstra(Grafo G, int S, Nodo nodoActual){

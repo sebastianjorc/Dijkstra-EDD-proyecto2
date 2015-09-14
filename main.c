@@ -20,6 +20,14 @@
 #endif
 //---------------------------------------------------------------------------------------------------
 // PROTOTIPOS	
-void introduccion();
+//void introduccion();
 //---------------------------------------------------------------------------------------------------
-
+int main(){
+	Grafo G;
+	inicializar_grafo(&G);
+	imprimir_grafo(G);
+	Nodo v=G.nodos[3];
+//	printf("Hola mundo");
+	drijkstra(G,0,v);
+	return 0;
+}
