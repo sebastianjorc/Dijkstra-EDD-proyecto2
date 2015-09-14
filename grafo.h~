@@ -102,12 +102,9 @@ void drijkstra(Grafo G, int S, Nodo nodoActual){
 	for (int i=0; i<tam; i++){
 		if ( ( ( G.pesos[ (G.nodos[a].pos) ][i]) > 0 ) && ( ( G.nodos[i].color ) !=2 ) ){
 			G.nodos[i].peso = (G.pesos[(G.nodos[a].pos)][i]);
-			if ()
 		}
 	}
 //3.- Recorremos todos los nodos adyacentes de a, excepto los nodos marcados, llamaremos a estos nodos no marcados vi.
-
-//	nodoActual
 
 //4.- Para el nodo actual, calculamos la distancia tentativa desde dicho nodo a sus vecinos con la siguiente fórmula: dt(vi) = Da + d(a,vi). Es decir, la distancia tentativa del nodo ‘vi’ es la distancia que actualmente tiene el nodo en el vector D más la distancia desde dicho el nodo ‘a’ (el actual) al nodo vi. Si la distancia tentativa es menor que la distancia almacenada en el vector, actualizamos el vector con esta distancia tentativa. Es decir: Si dt(vi) < Dvi → Dvi = dt(vi)
 
