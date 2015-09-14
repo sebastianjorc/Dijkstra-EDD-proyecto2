@@ -9,17 +9,17 @@
 #define stdlib_h
 #endif
 //---------------------------------------------------------------------------------------------------
-# define tam 9
+#ifndef alumnos_h
+#include "grafo.h"
+#define alumnos_h
+#endif
 //---------------------------------------------------------------------------------------------------
-typedef struct tipo_nodo{	char letra;	int peso,pos,color;}Nodo;
+#ifndef alumnos_h
+#include "nodo.h"
+#define alumnos_h
+#endif
 //---------------------------------------------------------------------------------------------------
 // PROTOTIPOS	
-void inicializar_nodo(Nodo nodo);
-void imprimir_nodo(Nodo nodo);
+void introduccion();
 //---------------------------------------------------------------------------------------------------
-void inicializar_nodo(){}
-//---------------------------------------------------------------------------------------------------
-void imprimir_nodo(Nodo nodo){
-	printf("%c:\tpos: %i\tpeso: %i\tcolor: %i\n", nodo.letra, nodo.pos, nodo.peso, nodo.color);
-}
-//---------------------------------------------------------------------------------------------------
+

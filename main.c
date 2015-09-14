@@ -9,14 +9,14 @@
 #define stdlib_h
 #endif
 //---------------------------------------------------------------------------------------------------
-#ifndef alumnos_h
+#ifndef grafo_h
 #include "grafo.h"
-#define alumnos_h
+#define grafo_h
 #endif
 //---------------------------------------------------------------------------------------------------
-#ifndef alumnos_h
+#ifndef nodo_h
 #include "nodo.h"
-#define alumnos_h
+#define nodo_h
 #endif
 //---------------------------------------------------------------------------------------------------
 // PROTOTIPOS	
