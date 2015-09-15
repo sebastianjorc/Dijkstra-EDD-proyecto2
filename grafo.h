@@ -17,8 +17,6 @@
 # define tam 9
 //---------------------------------------------------------------------------------------------------
 typedef struct tipo_grafo{	int pesos [tam][tam];	Nodo nodos[tam];}Grafo;
-//Aquí sirve para la interacción, osea estatico.
-
 //---------------------------------------------------------------------------------------------------
 // PROTOTIPOS	
 //void inicializar_matriz(int matriz[tam][tam]);
@@ -76,23 +74,31 @@ void inicializar_cola (Nodo cola[tam+1]){
 //---------------------------------------------------------------------------------------------------
 void imprimir_matriz(Grafo G){
 
-	printf("\t\ta  b  c  d  e  f  g  h  i\n");
-	printf("\t\t0  1  2  3  4  5  6  7  8\n");
+	printf("\nA continuación se moestrará la matriz de adyacencia del Grafo:\n");getchar();
+	printf("Nombres:\t a   b   c   d   e   f   g   h   i\n");
+	printf("Posiciones:\t 0   1   2   3   4   5   6   7   8\n");
 	for (int i=0; i<tam; i++){
 		printf("\t\t");
 		for (int j=0; j<tam; j++){
-			printf("%i  ", (G.pesos[i][j]) );
+			if (G.pesos[i][j]<10){
+				printf(" %i  ", (G.pesos[i][j]) );
+			}
+			else{
+				printf("%i  ", (G.pesos[i][j]) );
+			}
 		}
 		printf("\n");
 	}
+	printf("\n");
 }
 //---------------------------------------------------------------------------------------------------
 void imprimir_nodos(Grafo G){
 
+	printf("\nA continuación se moestrarán los nodos del Grafo:\n");getchar();
 	for (int i=0; i<tam; i++){
 		imprimir_nodo(G.nodos[i]);
-		printf("\n");
 	}
+	printf("\n");
 }
 //---------------------------------------------------------------------------------------------------
 void imprimir_grafo(Grafo G){
@@ -110,7 +116,6 @@ int cola_es_vacia(Nodo cola[tam+1]){
 void agregar_a_la_cola(Nodo cola[tam+1], Nodo i){
 	Nodo aux;
 	int loong=0;
-	imprimir_nodo(cola[loong]);
 	while (cola[loong].pos!=-1){
 		loong++;
 	}
@@ -147,14 +152,16 @@ void drijkstra(Grafo G, int S, int inicio){
 	inicializar_cola(cola);
 	G.nodos[inicio].peso=0;	
 	agregar_a_la_cola(cola,G.nodos[inicio]);
-	imprimir_nodo(cola[0]);
+
 	while (cola[0].pos!=-1){
 		u=sacar_de_cola(cola);
 		G.nodos[u.pos].color=2;
+
 		for (int i=0; i<tam; i++){
 			if ( ( ( G.pesos[u.pos][i]) > 0 ) && ( ( G.nodos[i].color ) !=2 ) ){
-				if (G.nodos[i].peso > ( G.nodos[u.pos].peso + peso ( G,u,( G.nodos[i]) ) ) ){
-					G.nodos[i].peso=( G.nodos[u.pos].peso + peso ( G,u, ( G.nodos[i] ) ) );
+				Nodo v=G.nodos[i];
+				if (v.peso > ( G.nodos[u.pos].peso + peso(G,u,v) ) ){
+					G.nodos[i].peso=( G.nodos[u.pos].peso + peso(G,u,v) );
 					agregar_a_la_cola(cola,G.nodos[i]);
 				}
 			}

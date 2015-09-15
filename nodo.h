@@ -17,6 +17,11 @@ typedef struct tipo_nodo{	char letra;	int peso,pos,color;}Nodo;
 void imprimir_nodo(Nodo nodo);
 //---------------------------------------------------------------------------------------------------
 void imprimir_nodo(Nodo nodo){
-	printf("%c:\tpos: %i\tpeso: %i\tcolor: %i\n", nodo.letra, nodo.pos, nodo.peso, nodo.color);
+	if (nodo.peso<10){		
+		printf("%c:\tpos: %i\tpeso:  %i\tcolor: %i\n", nodo.letra, nodo.pos, nodo.peso, nodo.color);
+	}
+	else{
+		printf("%c:\tpos: %i\tpeso: %i\tcolor: %i\n", nodo.letra, nodo.pos, nodo.peso, nodo.color);
+	}
 }
 //---------------------------------------------------------------------------------------------------
