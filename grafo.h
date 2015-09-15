@@ -27,14 +27,12 @@ void inicializar_grafo(Grafo *G);
 void inicializar_cola(Nodo Cola[tam+1]);
 int peso (Grafo G, Nodo u, Nodo v);
 Nodo sacar_de_cola(Nodo cola[tam+1]);
-void agregar_a_la_cola(Nodo cola[tam+1], Nodo i, int peso);
+void agregar_a_la_cola(Nodo cola[tam+1], Nodo i);
 int cola_es_vacia(Nodo cola[tam+1]);
 void imprimir_grafo(Grafo G);
 void imprimir_nodos(Grafo G);
 void imprimir_matriz(Grafo G);
 void drijkstra(Grafo G, int S, Nodo nodoActual);
-//---------------------------------------------------------------------------------------------------
-//void inicializar_matriz(int matriz[tam][tam]){
 //---------------------------------------------------------------------------------------------------
 void inicializar_nodos(Grafo *G){
 
@@ -103,26 +101,19 @@ void imprimir_grafo(Grafo G){
 }
 //---------------------------------------------------------------------------------------------------
 int cola_es_vacia(Nodo cola[tam+1]){
-int cola_es_vacia(Nodo cola[tam+1]);
-void imprimir_grafo(Grafo G);
-void imprimir_nodos(Grafo G);
-void imprimir_matriz(Grafo G);
 	if (cola[0].pos==-1){
 		return 1;
 	}
 	return 0;	
 }
 //---------------------------------------------------------------------------------------------------
-void agregar_a_la_cola(Nodo cola[tam+1], Nodo i, int peso){
+void agregar_a_la_cola(Nodo cola[tam+1], Nodo i){
 	Nodo aux;
 	int loong=0;
 	imprimir_nodo(cola[loong]);
 	while (cola[loong].pos!=-1){
 		loong++;
 	}
-
-	imprimir_nodo(i);
-	//int lugar=loong;
 	if (cola_es_vacia(cola)==1){
 		cola[0]=i;
 	}
@@ -155,7 +146,7 @@ void drijkstra(Grafo G, int S, Nodo nodoActual){
 	Nodo u, cola[tam+1];
 	inicializar_cola(cola);
 	G.nodos[nodoActual.pos].peso=nodoActual.peso=0;	
-	agregar_a_la_cola(cola,G.nodos[nodoActual.pos],G.nodos[nodoActual.pos].peso);
+	agregar_a_la_cola(cola,G.nodos[nodoActual.pos]);
 	imprimir_nodo(cola[0]);
 	while (cola[0].pos!=-1){
 		u=sacar_de_cola(cola);
@@ -164,7 +155,7 @@ void drijkstra(Grafo G, int S, Nodo nodoActual){
 			if ( ( ( G.pesos[u.pos][i]) > 0 ) && ( ( G.nodos[i].color ) !=2 ) ){
 				if (G.nodos[i].peso > ( G.nodos[u.pos].peso + peso ( G,u,( G.nodos[i]) ) ) ){
 					G.nodos[i].peso=( G.nodos[u.pos].peso + peso ( G,u, ( G.nodos[i] ) ) );
-					agregar_a_la_cola(cola,G.nodos[i],G.nodos[i].peso);
+					agregar_a_la_cola(cola,G.nodos[i]);
 				}
 			}
 		}
