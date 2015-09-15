@@ -26,7 +26,6 @@ int main(){
 	Grafo G;
 	inicializar_grafo(&G);
 	imprimir_grafo(G);
-	Nodo v=G.nodos[0];
-	drijkstra(G,0,v);
+	drijkstra(G,0,3);
 	return 0;
 }

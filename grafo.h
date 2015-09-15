@@ -32,7 +32,7 @@ int cola_es_vacia(Nodo cola[tam+1]);
 void imprimir_grafo(Grafo G);
 void imprimir_nodos(Grafo G);
 void imprimir_matriz(Grafo G);
-void drijkstra(Grafo G, int S, Nodo nodoActual);
+void drijkstra(Grafo G, int S, int inicio);
 //---------------------------------------------------------------------------------------------------
 void inicializar_nodos(Grafo *G){
 
@@ -142,11 +142,11 @@ int peso (Grafo G, Nodo u, Nodo v){
 	return (aux);
 }
 //---------------------------------------------------------------------------------------------------
-void drijkstra(Grafo G, int S, Nodo nodoActual){
+void drijkstra(Grafo G, int S, int inicio){
 	Nodo u, cola[tam+1];
 	inicializar_cola(cola);
-	G.nodos[nodoActual.pos].peso=nodoActual.peso=0;	
-	agregar_a_la_cola(cola,G.nodos[nodoActual.pos]);
+	G.nodos[inicio].peso=0;	
+	agregar_a_la_cola(cola,G.nodos[inicio]);
 	imprimir_nodo(cola[0]);
 	while (cola[0].pos!=-1){
 		u=sacar_de_cola(cola);
