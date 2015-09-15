@@ -11,7 +11,7 @@
 //---------------------------------------------------------------------------------------------------
 # define tam 9
 //---------------------------------------------------------------------------------------------------
-typedef struct tipo_nodo{	char letra;	int peso,pos,color,padre;}Nodo;
+typedef struct tipo_nodo{	char letra;	int peso,pos,color;}Nodo;
 //---------------------------------------------------------------------------------------------------
 // PROTOTIPOS	
 void inicializar_nodo(Nodo *nodo);
