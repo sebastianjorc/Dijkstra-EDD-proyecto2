@@ -64,6 +64,12 @@ void inicializar_grafo(Grafo *G){
 	}
 }
 //---------------------------------------------------------------------------------------------------
+void inicializar_cola (Nodo cola[tam+1]){
+	for (int i=0; i<tam+1; i++){
+		cola[i].pos=-1;
+	}
+}
+//---------------------------------------------------------------------------------------------------
 void imprimir_matriz(Grafo G){
 
 	printf("\t\ta  b  c  d  e  f  g  h  i\n");
@@ -90,31 +96,36 @@ void imprimir_grafo(Grafo G){
 	imprimir_nodos(G);
 }
 //---------------------------------------------------------------------------------------------------
+Nodo sacar_de_cola(Nodo cola[tam+1]){
+	
+}
+//---------------------------------------------------------------------------------------------------
+void agregar_a_la_cola(Nodo Cola[tam+1], Nodo i, int peso){
+
+}
+//---------------------------------------------------------------------------------------------------
+int peso (Grafo G, Nodo u, Nodo v){
+	int aux=G.pesos[u.pos][v.pos];
+	return (aux);
+}
+//---------------------------------------------------------------------------------------------------
 void drijkstra(Grafo G, int S, Nodo nodoActual){
-	//inicializo el grafo -> Viene inicializado. ✓
-	nodoActual.peso=0;	nodoActual.color=2;
-//	Nodo D[tam]=G.nodos; 
-//	1.- 	Inicializar todas las distancias en D con un valor infinito relativo ya que son desconocidas al principio, exceptuando la de x que se debe colocar en 0 debido a que la distancia de x a x sería 0.
-
-	int a=G.nodos[3].pos;
-
-//2.- Sea a = x (tomamos a como nodo actual).
-	for (int i=0; i<tam; i++){
-		if ( ( ( G.pesos[ (G.nodos[a].pos) ][i]) > 0 ) && ( ( G.nodos[i].color ) !=2 ) ){
-			G.nodos[i].peso = (G.pesos[(G.nodos[a].pos)][i]);
-			if ()
+	Nodo u, cola[tam+1];
+	inicializar_cola(cola);
+	G.nodos[nodoActual.pos].peso=nodoActual.peso=0;	
+	agregar_a_la_cola(cola,G.nodos[i],G.nodos[i].peso);
+		while (cola[0].pos!=-1){
+		u=sacar_de_ cola(cola);
+		G.nodos[u.pos].color=2;
+		for (int i=0; i<tam; i++){
+			if ( ( ( G.pesos[u.pos][i]) > 0 ) && ( ( G.nodos[i].color ) !=2 ) ){
+				if (G.nodos[i].peso > ( G.nodos[u.pos].peso + peso ( G,u,( G.nodos[i]) ) ) ){
+					G.nodos[i].peso=( G.nodos[u.pos].peso + peso ( G,u, ( G.nodos[i] ) ) );
+//					G.nodos[i].padre=u;
+					agregar_a_la_cola(&cola,G.nodos[i],G.nodos[i].peso)				;
+				}
+			}
 		}
 	}
-//3.- Recorremos todos los nodos adyacentes de a, excepto los nodos marcados, llamaremos a estos nodos no marcados vi.
-
-//	nodoActual
-
-//4.- Para el nodo actual, calculamos la distancia tentativa desde dicho nodo a sus vecinos con la siguiente fórmula: dt(vi) = Da + d(a,vi). Es decir, la distancia tentativa del nodo ‘vi’ es la distancia que actualmente tiene el nodo en el vector D más la distancia desde dicho el nodo ‘a’ (el actual) al nodo vi. Si la distancia tentativa es menor que la distancia almacenada en el vector, actualizamos el vector con esta distancia tentativa. Es decir: Si dt(vi) < Dvi → Dvi = dt(vi)
-
-//5.-Marcamos como completo el nodo a.
-
-//6.-Tomamos como próximo nodo actual el de menor valor en D (puede hacerse almacenando los valores en una cola de prioridad) y volvemos al paso 3 mientras existan nodos no marcados.
-	
-	
 }
 //---------------------------------------------------------------------------------------------------
