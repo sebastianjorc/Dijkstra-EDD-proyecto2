@@ -23,13 +23,14 @@ typedef struct tipo_grafo{	int pesos [tam][tam];	Nodo nodos[tam];}Grafo;
 void inicializar_nodos(Grafo *G);
 void inicializar_grafo(Grafo *G);
 void inicializar_cola(Nodo Cola[tam+1]);
-int peso (Grafo G, Nodo u, Nodo v);
-Nodo sacar_de_cola(Nodo cola[tam+1]);
-void agregar_a_la_cola(Nodo cola[tam+1], Nodo i);
-int cola_es_vacia(Nodo cola[tam+1]);
-void imprimir_grafo(Grafo G);
-void imprimir_nodos(Grafo G);
 void imprimir_matriz(Grafo G);
+void imprimir_nodos(Grafo G);
+void imprimir_grafo(Grafo G);
+void imprimir_cola(Nodo cola[tam+1]);
+int cola_es_vacia(Nodo cola[tam+1]);
+void agregar_a_la_cola(Nodo cola[tam+1], Nodo i);
+Nodo sacar_de_cola(Nodo cola[tam+1]);
+int peso (Grafo G, Nodo u, Nodo v);
 void drijkstra(Grafo G, int S, int inicio);
 //---------------------------------------------------------------------------------------------------
 void inicializar_nodos(Grafo *G){
@@ -69,16 +70,17 @@ void inicializar_grafo(Grafo *G){
 void inicializar_cola (Nodo cola[tam+1]){
 	for (int i=0; i<tam+1; i++){
 		cola[i].pos=-1;
+		cola[i].letra='0';
+		cola[i].peso=900;
 	}
 }
 //---------------------------------------------------------------------------------------------------
 void imprimir_matriz(Grafo G){
 
 	printf("\nA continuación se moestrará la matriz de adyacencia del Grafo:\n");getchar();
-	printf("Nombres:\t a   b   c   d   e   f   g   h   i\n");
-	printf("Posiciones:\t 0   1   2   3   4   5   6   7   8\n");
+	printf("Nombres:\t    a.  b.  c.  d.  e.  f.  g.  h.  i.\n");
 	for (int i=0; i<tam; i++){
-		printf("\t\t");
+		printf("\t\t%c. ",G.nodos[i].letra);
 		for (int j=0; j<tam; j++){
 			if (G.pesos[i][j]<10){
 				printf(" %i  ", (G.pesos[i][j]) );
@@ -106,6 +108,18 @@ void imprimir_grafo(Grafo G){
 	imprimir_nodos(G);
 }
 //---------------------------------------------------------------------------------------------------
+void imprimir_cola(Nodo cola[tam+1]){
+	printf("cola:\t");
+	for(int i=0;i<tam;i++){
+		if (cola[i].peso<10){
+			printf("|%c:%i ", cola[i].letra, cola[i].peso);
+		}
+		else{
+			printf("|%c:%i", cola[i].letra, cola[i].peso);
+		}
+	}getchar();
+}
+//---------------------------------------------------------------------------------------------------
 int cola_es_vacia(Nodo cola[tam+1]){
 	if (cola[0].pos==-1){
 		return 1;
@@ -122,7 +136,7 @@ void agregar_a_la_cola(Nodo cola[tam+1], Nodo i){
 	if (cola_es_vacia(cola)==1){
 		cola[0]=i;
 	}
-	while (loong>0){
+	while (loong>0 || cola[1].peso < cola[0].peso){
 		cola[loong+1]=i;
 		
 		if (cola[loong+1].peso < cola[loong].peso){
@@ -154,6 +168,7 @@ void drijkstra(Grafo G, int S, int inicio){
 	agregar_a_la_cola(cola,G.nodos[inicio]);
 
 	while (cola[0].pos!=-1){
+		imprimir_cola(cola);
 		u=sacar_de_cola(cola);
 		G.nodos[u.pos].color=2;
 

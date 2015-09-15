@@ -26,7 +26,7 @@ int main(){
 	Grafo G;
 	inicializar_grafo(&G);
 	imprimir_grafo(G);
-	drijkstra(G,0,3);
+	drijkstra(G,0,0);
 	return 0;
 }
 //---------------------------------------------------------------------------------------------------
